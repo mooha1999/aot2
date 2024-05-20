@@ -38,31 +38,10 @@ public class SceneManager {
                     "initialized with a Stage before it could be used");
         }
         Platform.runLater(() -> {
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                            .getResource(String.format("/com/examples/%s.fxml", name)));
-                    Parent root = fxmlLoader.load();
-                    Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
-                    primaryStage.show();
-                    System.out.println("Scene loaded");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass()
+                    .getResource(String.format("/com/examples/%s.fxml", name)));
+            primaryStage.show();
+            System.out.println("Scene loaded");
         });
-    }
-
-    public Parent loadPane(String name) {
-        if (primaryStage == null) {
-            throw new RuntimeException("Stage Coordinator should be " +
-                    "initialized with a Stage before it could be used");
-        }
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                        .getResource(String.format("/com/examples/%s.fxml", name)));
-                Parent root = fxmlLoader.load();
-                return root;
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
     }
 }
