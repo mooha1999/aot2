@@ -1,4 +1,4 @@
-package com.example.controllers;
+package com.example;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;

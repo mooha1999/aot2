@@ -1,6 +1,7 @@
 package com.example;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,9 +18,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("easy-mode"), 1200, 800);
-        stage.setScene(scene);
-        stage.show();
+        SceneManager.initStage(stage);
+        SceneManager sceneManager = new SceneManager();
+        try{
+        sceneManager.loadView("easy-mode");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     static void setRoot(String fxml) throws IOException {

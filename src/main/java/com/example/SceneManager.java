@@ -1,4 +1,4 @@
-package com.example.utils;
+package com.example;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -13,19 +13,19 @@ import java.util.Map;
 import java.util.Set;
 
 public class SceneManager {
-    private Stage primaryStage;
+    private static Stage primaryStage;
 
     private static final int SCENE_WIDTH = 1000;
     private static final int SCENE_HEIGHT = 800;
 
-    public void initStage(Stage stage) {
+    public static void initStage(Stage stage) {
         if (primaryStage != null) {
             throw new IllegalArgumentException("The Stage has already been initialized");
         }
         primaryStage = stage;
     }
 
-    public Stage getStage() {
+    public static Stage getStage() {
         if (primaryStage == null) {
             System.out.println("Exception in SceneManager Stage is null");
         }
@@ -38,10 +38,16 @@ public class SceneManager {
                     "initialized with a Stage before it could be used");
         }
         Platform.runLater(() -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                    .getResource(String.format("/com/examples/%s.fxml", name)));
-            primaryStage.show();
-            System.out.println("Scene loaded");
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(String.format("/com/example/%s.fxml", name)));
+                Parent root = fxmlLoader.load();
+                Scene scene = new Scene(root);
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                System.out.println("Scene loaded");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 }
