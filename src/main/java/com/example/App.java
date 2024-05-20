@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import game.engine.base.Wall;
+
 /**
  * JavaFX App
  */
@@ -20,11 +22,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         SceneManager.initStage(stage);
         SceneManager sceneManager = new SceneManager();
-        try{
         sceneManager.loadView("easy-mode");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        
     }
 
     static void setRoot(String fxml) throws IOException {

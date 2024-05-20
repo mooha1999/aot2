@@ -23,7 +23,14 @@ public class SceneManager {
             throw new IllegalArgumentException("The Stage has already been initialized");
         }
         primaryStage = stage;
+        startBattle();
     }
+
+
+    private static void startBattle() {
+        
+    }
+
 
     public static Stage getStage() {
         if (primaryStage == null) {
